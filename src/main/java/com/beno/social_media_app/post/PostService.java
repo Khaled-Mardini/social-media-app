@@ -41,8 +41,10 @@ public class PostService {
     }
 
     public String delete(Long id) {
-        if (postRepository.existsById(id)) {
-            postRepository.deleteById(id);
+        Post post = postRepository.findById(id).orElse(null);
+        if (post != null) {
+            post.setDeleted(true);
+            postRepository.save(post);
             return "Post Deleted";
         }
         return "Post didn't found";
