@@ -19,8 +19,12 @@ public class CommentService {
     @Autowired
     private PostRepository postRepository;
 
-    List<Comment> fetch() {
+    public List<Comment> fetch() {
         return commentRepository.findAll();
+    }
+
+    public Page<Comment> fetchByPostId(Long postId, Pageable pageable) {
+        return commentRepository.findByPost_Id(postId, pageable);
     }
 
     public Page<Comment> fetch(Pageable pageable) {

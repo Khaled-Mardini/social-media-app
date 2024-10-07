@@ -16,6 +16,11 @@ public class CommentController {
         return commentService.fetch(pageable);
     }
 
+    @GetMapping("/post/{id}")
+    public Page<Comment> fetch(@PathVariable Long id, Pageable pageable) {
+        return commentService.fetchByPostId(id, pageable);
+    }
+
     @GetMapping("/{id}")
     public Comment fetch(@PathVariable Long id) {
         return commentService.fetch(id);
