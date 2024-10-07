@@ -30,8 +30,10 @@ public class UserService {
 
     public User update(Long id, User user) {
         return userRepository.findById(id).map(resource -> {
-            resource.setFirstname(user.getFirstname());
-            resource.setLastname(user.getLastname());
+            if (user.getFirstname() != null)
+                resource.setFirstname(user.getFirstname());
+            if (user.getLastname() != null)
+                resource.setLastname(user.getLastname());
             return userRepository.save(resource);
         }).orElseThrow();
     }

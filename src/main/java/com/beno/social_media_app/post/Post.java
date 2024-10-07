@@ -54,7 +54,7 @@ public class Post {
     private boolean isDeleted = false;
 
     @PrePersist
-    @PreUpdate
+    @PostLoad
     public void validateIfDeleted() throws Exception {
         if (isDeleted) {
             throw new Exception("no such post");
