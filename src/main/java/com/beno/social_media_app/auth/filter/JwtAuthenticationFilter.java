@@ -1,7 +1,5 @@
 package com.beno.social_media_app.auth.filter;
 
-import com.maids.libms.auth.repository.TokenRepository;
-import com.maids.libms.auth.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +13,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.beno.social_media_app.auth.model.Token;
+import com.beno.social_media_app.auth.repository.TokenRepository;
+import com.beno.social_media_app.auth.service.JwtService;
 
 import java.io.IOException;
 
@@ -46,9 +48,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         userEmail = jwtService.extractUsername(jwt);
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
-            // var isTokenValid = tokenRepository.findByToken(jwt)
-            // .map(t -> !t.isExpired() && !t.isRevoked())
-            // .orElse(false);
+            Token token = tokenRepository.findByToken(jwt).orElse(null);
+            boolean isTokenValid = token != null;
+            if (token != null) {
+                isTokenValid = (token.isExpired() || token.isRevoked());
+            }
             if (jwtService.isTokenValid(jwt, userDetails) && isTokenValid) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,

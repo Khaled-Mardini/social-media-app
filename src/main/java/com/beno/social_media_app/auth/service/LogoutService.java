@@ -1,6 +1,5 @@
 package com.beno.social_media_app.auth.service;
 
-import com.maids.libms.auth.repository.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +7,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
+
+import com.beno.social_media_app.auth.repository.TokenRepository;
 
 @Service
 @RequiredArgsConstructor

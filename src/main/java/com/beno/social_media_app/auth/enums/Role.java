@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.maids.libms.auth.enums.Permission.*;
+import static com.beno.social_media_app.auth.enums.Permission.*;
 
 @Getter
 @RequiredArgsConstructor
 public enum Role {
 
-    PATRON(Collections.emptySet()),
+    USER(Collections.emptySet()),
     ADMIN(
-            Set.of(ADMIN_READ, ADMIN_UPDATE, ADMIN_DELETE, ADMIN_CREATE));
+            Set.of(ADMIN_READ, ADMIN_CREATE, ADMIN_UPDATE, ADMIN_DELETE));
 
     private final Set<Permission> permissions;
 

@@ -1,14 +1,19 @@
 package com.beno.social_media_app.auth.model;
 
-import com.maids.libms.auth.enums.TokenType;
-import com.maids.libms.patron.Patron;
+import com.beno.social_media_app.auth.enums.TokenType;
+import com.beno.social_media_app.user.User;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,6 +35,6 @@ public class Token {
     public boolean expired;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patron_id")
-    public Patron patron;
+    @JoinColumn(name = "user_id")
+    public User user;
 }

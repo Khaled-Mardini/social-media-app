@@ -1,6 +1,6 @@
 package com.beno.social_media_app.auth.dto;
 
-import com.maids.libms.patron.Patron;
+import com.beno.social_media_app.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +14,5 @@ public class VerifyResponse {
 
     String accessToken;
     String refreshToken;
-    Patron patron;
+    User patron;
 }
