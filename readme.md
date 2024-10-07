@@ -25,7 +25,7 @@ Before you begin, ensure you have met the following requirements:
 1. **Clone the Repository**
 
    bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/Khaled-Mardini/social-media-app
    cd your-repo-name
 
 2. **Build the Project**
