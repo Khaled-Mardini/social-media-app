@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,9 +27,6 @@ import com.beno.social_media_app.user.User;
 import com.beno.social_media_app.user.UserRepository;
 import com.beno.social_media_app.user.UserService;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
