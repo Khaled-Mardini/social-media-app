@@ -15,6 +15,11 @@ public class ReactionController {
         return reactionService.fetch(pageable);
     }
 
+    @GetMapping("/post/{id}")
+    public Page<Reaction> fetch(@PathVariable Long id, Pageable pageable) {
+        return reactionService.fetchByPostId(id, pageable);
+    }
+
     @GetMapping("/{id}")
     public Reaction fetch(@PathVariable Long id) {
         return reactionService.fetch(id);

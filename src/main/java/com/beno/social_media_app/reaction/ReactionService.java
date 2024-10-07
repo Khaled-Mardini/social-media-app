@@ -23,6 +23,10 @@ public class ReactionService {
         return reactionRepository.findAll();
     }
 
+    public Page<Reaction> fetchByPostId(Long postId, Pageable pageable) {
+        return reactionRepository.findByPost_Id(postId, pageable);
+    }
+
     public Page<Reaction> fetch(Pageable pageable) {
         return reactionRepository.findAll(pageable);
     }

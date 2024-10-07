@@ -18,12 +18,12 @@ public class PostService {
     }
 
     public Page<Post> fetch(Pageable pageable) {
-        return postRepository.findAll(pageable);
+        return postRepository.findAllByIsDeletedFalse(pageable);
     }
 
     @Cacheable("Post")
     public Post fetch(Long id) {
-        return postRepository.findById(id).orElseThrow();
+        return postRepository.findByIdAndIsDeletedFalse(id).orElseThrow();
     }
 
     public Post create(Post post) throws Exception {

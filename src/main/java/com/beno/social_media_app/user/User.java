@@ -64,6 +64,7 @@ public class User implements UserDetails {
     Instant createdAt;
 
     @Column(nullable = false)
+    @Builder.Default
     Boolean activated = true;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
