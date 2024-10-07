@@ -13,8 +13,11 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
+import com.beno.social_media_app.auth.enums.Permission;
+import com.beno.social_media_app.auth.enums.Role;
 import com.beno.social_media_app.auth.filter.JwtAuthenticationFilter;
 
+import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -27,13 +30,13 @@ public class SecurityConfiguration {
         final LogoutHandler logoutHandler;
 
         private static final String[] WHITE_LIST_URL = {
-                        "**",
+                        // "**",
                         "/api/auth/**",
                         "/api-docs/**",
                         "/swagger-resources",
                         "/swagger-resources/**",
                         "/swagger-ui/**",
-                        "/swagger-ui.html"
+                        "/swagger-ui/index.html"
         };
 
         @Bean
@@ -43,21 +46,7 @@ public class SecurityConfiguration {
                                 .cors(AbstractHttpConfigurer::disable)
                                 .authorizeHttpRequests(req -> req.requestMatchers(WHITE_LIST_URL)
                                                 .permitAll()
-                                                .requestMatchers("/api/patrons/**")
-                                                // .hasAnyRole(ADMIN.name(), PATRON.name())
-                                                // .requestMatchers(POST, "/api/books/**")
-                                                // .hasAnyRole(ADMIN.name(), PATRON.name())
-                                                // .requestMatchers(PUT, "/api/books/**")
-                                                // .hasAnyRole(ADMIN.name(), PATRON.name())
-                                                // .requestMatchers(DELETE, "/api/books/**")
-                                                // .hasAnyRole(ADMIN.name(), PATRON.name())
-                                                // .requestMatchers(POST, "/api/authors/**")
-                                                // .hasAnyRole(ADMIN.name(), PATRON.name())
-                                                // .requestMatchers(PUT, "/api/authors/**")
-                                                // .hasAnyRole(ADMIN.name(), PATRON.name())
-                                                // .requestMatchers(DELETE, "/api/authors/**")
-                                                // .hasAnyRole(ADMIN.name(), PATRON.name())
-                                                // .anyRequest()
+                                                .anyRequest()
                                                 .authenticated())
                                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                                 .authenticationProvider(authenticationProvider)

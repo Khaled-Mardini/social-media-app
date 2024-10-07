@@ -15,12 +15,11 @@ import lombok.NoArgsConstructor;
 public class RegisterRequest {
     @NotNull
     @Size(min = 3, max = 54)
-    String name;
-
-    String address;
+    String firstname;
 
     @NotNull
-    String mobileNumber;
+    @Size(min = 3, max = 54)
+    String lastname;
 
     @Email
     @NotNull

@@ -1,5 +1,7 @@
 package com.beno.social_media_app.user;
 
+import com.beno.social_media_app.auth.enums.Role;
+import com.beno.social_media_app.auth.model.Token;
 import com.beno.social_media_app.comment.Comment;
 import com.beno.social_media_app.post.Post;
 import com.beno.social_media_app.reaction.Reaction;
@@ -10,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.experimental.Accessors;
@@ -59,9 +63,20 @@ public class User implements UserDetails {
     @CreationTimestamp
     Instant createdAt;
 
+    @Column(nullable = false)
+    Boolean activated = true;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Token> tokens;
+
+    @Enumerated(EnumType.STRING)
+    Role role;
+
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        return role.getAuthorities();
     }
 
     @Override

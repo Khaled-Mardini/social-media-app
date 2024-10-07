@@ -58,6 +58,7 @@ public class AuthenticationService {
         }
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         User user = modelMapper.map(request, User.class);
+        user.setRole(Role.USER);
         // patron.setActivationKey(generateActivationKey());
         // patron.setActivationKeyCreation(Instant.now());
         // patron.setRole(Role.USER);
